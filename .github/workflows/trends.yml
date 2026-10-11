@@ -1,4 +1,3 @@
-
 name: News Trend Hunter
 
 on:
@@ -14,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Get repository files
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -28,16 +27,13 @@ jobs:
       - name: Research news reports
         run: python news_researcher.py
 
-      - name: Rank trending stories
-        run: python trend_scorer.py
-
-      - name: Save news research results
+      - name: Save research results
         uses: actions/upload-artifact@v4
         with:
-          name: ranked-news-results
+          name: news-research-results
           path: |
             trends.json
             research.json
-            ranked_news.json
           if-no-files-found: error
           retention-days: 7
+
