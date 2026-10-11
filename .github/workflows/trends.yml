@@ -12,7 +12,7 @@ permissions:
 jobs:
   find-trends:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
 
     steps:
       - name: Get repository files
@@ -25,12 +25,20 @@ jobs:
 
       - name: Find trending topics
         run: python trend_hunter.py
-      - name: Save research results
+
+      - name: Research news reports
+        run: python news_researcher.py
+
+      - name: Rank trending stories
+        run: python trend_scorer.py
+
+      - name: Save news research results
         uses: actions/upload-artifact@v4
         with:
-          name: news-research-results
+          name: ranked-news-results
           path: |
             trends.json
             research.json
+            ranked_news.json
           if-no-files-found: error
           retention-days: 7
