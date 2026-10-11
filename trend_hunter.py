@@ -4,11 +4,16 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 
+
 FEEDS = {
-    "Bangladesh": "https://trends.google.com/trending/rss?geo=BD",
     "United States": "https://trends.google.com/trending/rss?geo=US",
-    "Worldwide": "https://trends.google.com/trending/rss?geo=GB",
+    "United Kingdom": "https://trends.google.com/trending/rss?geo=GB",
+    "Germany": "https://trends.google.com/trending/rss?geo=DE",
+    "France": "https://trends.google.com/trending/rss?geo=FR",
+    "Italy": "https://trends.google.com/trending/rss?geo=IT",
+    "Spain": "https://trends.google.com/trending/rss?geo=ES",
 }
+
 
 def fetch_trends(country, url):
     request = urllib.request.Request(
