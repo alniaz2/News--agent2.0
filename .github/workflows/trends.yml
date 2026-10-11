@@ -25,9 +25,7 @@ jobs:
 
       - name: Find trending topics
         run: python trend_hunter.py
-      - name: Research news reports
-        run: python news_researcher.py
-      -       - name: Save research results
+      - name: Save research results
         uses: actions/upload-artifact@v4
         with:
           name: news-research-results
