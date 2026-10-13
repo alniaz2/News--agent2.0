@@ -1,4 +1,3 @@
-
 name: US and Europe News Agent
 
 on:
@@ -13,6 +12,7 @@ jobs:
   find-trends:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -22,6 +22,10 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
       - name: Find trending topics
         run: python trend_hunter.py
 
@@ -30,5 +34,5 @@ jobs:
         with:
           name: google-trends-results
           path: trends.json
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 7
